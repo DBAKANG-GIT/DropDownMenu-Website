@@ -10,7 +10,7 @@
   --dark-utility-color: #333;
   --white-utility-color: #fff;
   --primary-color: #ccc;
-  --secondary-color: rgba(172, 58, 17, 0.9);
+  --secondary-color: coral;
   --overlay-color: rgba(24, 39, 51, 0.87);
   --menu-speed: 0.75s;
   --transition-speed: 1s;
@@ -20,13 +20,15 @@ html,body{
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.6;
   /* color: var(--dark-utility-color); */
-  background-color: var(--white-utility-color);
+  background-color: #f4f4f4;
 }
 
 /* Styling Navbar */
 #navbar-container ul {
   display: flex;
   flex-direction: row;
+  background-color: #0e3c8a;
+
   /* justify-content: space-evenly; */
 
 }
@@ -34,50 +36,158 @@ html,body{
 #navbar-container ul li{
   list-style: none;
   /* padding: 20px 10px; */
-  color: var(--dark-utility-color);
+  color: var(--white-utility-color);
   padding: 1rem;
   position: relative;
+  display: inline-block;
+  z-index: 2;
+}
 
-
+/* Hide the dropdown menu by default */
+#navbar-container ul li ul {
+  display: none; 
 }
 
 #navbar-container ul li a{
   text-decoration: none;
-  color: var(--dark-utility-color);
+  color: var(--white-utility-color);
 
 }
 
-#navbar-container ul > li:hover,
-#navbar-container ul > li:hover a{
+#navbar-container ul li:hover{
    background-color: coral;
    cursor: pointer;
-  color: white !important;
+   color: var(--white-utility-color);
+
 }
 
-
-/* Hide Nested UL by default  */
-#navbar-container ul li ul{
-  display: none;
+#navbar-container ul li:hover a{
+  color: var(--white-utility-color);
 }
 
+/* Nested Drop Down Show */
 
+#navbar-container ul li:hover  ul {
+  display: none; /* Show the dropdown menu when the parent menu item is hovered over */
+  position: absolute; /* Position the dropdown menu absolutely relative to the parent menu item */
+  top: 100%; /* Position the dropdown menu below the parent menu item */
+  left: 0; /* Position the dropdown menu flush with the left side of the parent menu item */
+  width: 200px;
+  /* padding-top: 1rem; Add some space between the parent menu item and the dropdown menu */
+  /* padding-top: 1rem; Add some space between the parent menu item and the dropdown menu */
+  z-index: 1; /* Add a higher z-index value to the dropdown menu */
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
 
+#navbar-container ul li:hover  ul li{
+  display: block;
+  background-color: #e7e7e7;
+}
 
+#navbar-container ul li:hover ul.visible{
+  display: block;
+  opacity: 1;
+}
+
+#navbar-container ul li:hover  ul li a{
+  color: var(--dark-utility-color);
+}
+
+#navbar-container ul li:hover  ul li:hover{
+  background-color: #e0e0e0;
+  color: inherit;
+}
+
+/* Styling the background of span in dropdown list */
+#navbar-container ul li:hover span.bg-primary{
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+  float:right;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+#navbar-container ul li:hover ul li:hover span.bg-primary{
+  background-color: chocolate;
+}
 
 /* Styling Hero */
 #hero-section{
-  height: 20vh;
+  height: 30vh;
   background-color: var(--secondary-color);
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   color: var(--white-utility-color);
+  flex-direction: column;
+  padding: 0 2rem;
+}
+
+#hero-section h1{
+  font-size: 4rem;
 }
 
 .bg-primary{
   background-color: var(--secondary-color);
+  color: var(--white-utility-color);
 }
+
+/* Small devices (phones, 320 and up) */
+@media (min-width: 320px) {
+  #navbar-container ul {
+    flex-direction: column;
+    background-color: var(--secondary-color);
+  }
+
+  #navbar-container ul li {
+    display: block;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  #navbar-container ul li:last-child {
+    border-bottom: none;
+  }
+
+  #navbar-container ul li:hover ul {
+    position: static;
+    display: none;
+    opacity: 1;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  #hero-section {
+    height: 50vh;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  #navbar-container ul {
+    flex-direction: row;
+    background-color: #0e3c8a;
+  }
+
+  #navbar-container ul li {
+    display: inline-block;
+    text-align: left;
+    padding: 1rem;
+    border-bottom: none;
+  }
+
+  #navbar-container ul li:hover ul {
+    position: absolute;
+    display: none;
+    opacity: 0;
+  }
+}
+
+
 
 
 
